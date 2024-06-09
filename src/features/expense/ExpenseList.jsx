@@ -4,17 +4,16 @@ import { useGetExpensesQuery } from './expenseApiSlice'
 const ExpenseList = () => {
 
   const {
-    data : expense ,
+    data : expenses ,
     isLoading,
     isSuccess,
     isError,
     error
   } = useGetExpensesQuery();
 
-
   return (
-    <div>
-      expense list
+    <div className='mt-24'>
+       expenseList
     </div>
   )
 }
