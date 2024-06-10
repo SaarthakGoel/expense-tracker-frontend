@@ -1,16 +1,26 @@
-import React, { useEffect } from 'react'
-import { useSendLogoutMutation } from '../features/auth/authApiSlice'
+import React, { useEffect, useState } from 'react';
+import { useSendLogoutMutation } from '../features/auth/authApiSlice';
 import { useNavigate } from 'react-router-dom';
 
 const DashHeader = () => {
-
   const navigate = useNavigate();
-
-  const [sendLogout , {isSuccess}] = useSendLogoutMutation();
+  const [logoutSuccess , setLogoutSuccess] = useState(false)
+  const [sendLogout, { isSuccess, isLoading, isError, error }] = useSendLogoutMutation();
 
   useEffect(() => {
-     if(isSuccess) navigate('/');
-  },[isSuccess , navigate]);
+    if (logoutSuccess) {
+      navigate('/');
+    }
+  }, [logoutSuccess, navigate]);
+
+  const handleLogout = async () => {
+    try {
+      setLogoutSuccess(true)
+      await sendLogout().unwrap();
+    } catch (err) {
+      console.error(err);
+    }
+  };
 
   return (
     <div className=''>
@@ -19,14 +29,13 @@ const DashHeader = () => {
           Pocket Khata
         </section>
         <section>
-          <button onClick={sendLogout}>
-            logout
+          <button onClick={handleLogout} disabled={isLoading}>
+            {isLoading ? 'Logging out...' : 'Logout'}
           </button>
         </section>
       </section>
-
     </div>
-  )
-}
+  );
+};
 
-export default DashHeader
+export default DashHeader;

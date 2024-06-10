@@ -13,7 +13,7 @@ const ExpenseList = () => {
 
   return (
     <div className='mt-24'>
-       expenseList
+       {console.log(expenses)}
     </div>
   )
 }

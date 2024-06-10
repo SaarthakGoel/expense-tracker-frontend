@@ -35,7 +35,7 @@ const Landing = () => {
           </section>
           <section className='py-5'>
             <button className='bg-darkprimary text-bodycolor py-4 px-10 border-2 border-darkprimary rounded-full mx-3 transition duration-500 font-medium hover:border-2 hover:border-secondary' onClick={() => navigate('/login')}>Log In</button>
-            <button className='bg-bodycolor py-4 px-10 rounded-full mx-3 font-medium border-2 border-bodycolor transition duration-500 hover:border-2 hover:border-black'>Create Account</button>
+            <button className='bg-bodycolor py-4 px-10 rounded-full mx-3 font-medium border-2 border-bodycolor transition duration-500 hover:border-2 hover:border-black' onClick={() => navigate('/createaccount')}>Create Account</button>
           </section>
         </section>
       </main>

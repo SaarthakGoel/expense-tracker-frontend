@@ -9,6 +9,8 @@ import NewExpense from './features/expense/NewExpense';
 import ProtectedRoute from './components/ProtectedRoute';
 import Login from './components/Login';
 import { Prefetch } from './features/auth/Prefetch';
+import PersistLogin from './components/PersistLogin';
+import CreateAccount from './components/CreateAccount';
 
 function App() {
   return (
@@ -16,6 +18,8 @@ function App() {
       <Route path="/" element={<Layout />}>
         <Route index element={<Landing />} />
         <Route path='/login' element={<Login />} />
+        <Route path='/createaccount' element={<CreateAccount />} /> 
+        <Route element={<PersistLogin />} >
           <Route element={<ProtectedRoute />} >
             <Route element={<Prefetch />}>
               <Route path='dash' element={<DashLayout />}>
@@ -29,6 +33,7 @@ function App() {
             </Route>
           </Route>
         </Route>
+      </Route>
     </Routes>
   );
 }
