@@ -5,7 +5,6 @@ import DashLayout from './components/DashLayout';
 import Welcome from './components/Welcome';
 import ExpenseList from './features/expense/ExpenseList';
 import EditExpense from './features/expense/EditExpense';
-import NewExpense from './features/expense/NewExpense';
 import ProtectedRoute from './components/ProtectedRoute';
 import Login from './components/Login';
 import { Prefetch } from './features/auth/Prefetch';
@@ -27,7 +26,6 @@ function App() {
                 <Route path='expenses'>
                   <Route index element={<ExpenseList />} />
                   <Route path=':id' element={<EditExpense />} />
-                  <Route path='new' element={<NewExpense />} />
                 </Route>
               </Route>
             </Route>

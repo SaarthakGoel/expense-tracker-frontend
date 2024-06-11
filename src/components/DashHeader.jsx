@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useSendLogoutMutation } from '../features/auth/authApiSlice';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const DashHeader = () => {
   const navigate = useNavigate();
@@ -23,15 +23,18 @@ const DashHeader = () => {
   };
 
   return (
-    <div className=''>
-      <section className='flex h-[10vh] justify-between items-center fixed top-0 right-0 left-0 bg-darkprimary'>
-        <section>
-          Pocket Khata
+    <div>
+      <section className='flex h-[10vh] justify-around items-center fixed top-0 right-0 left-0 bg-darkprimary'>
+        <section className=' text-5xl font-extrabold text-bodycolor'>
+        <Link to='/dash'>  Pocket Khata </Link>
         </section>
         <section>
-          <button onClick={handleLogout} disabled={isLoading}>
-            {isLoading ? 'Logging out...' : 'Logout'}
-          </button>
+          <ul className='flex cursor-pointer'>
+            <Link to='/dash/expenses'><li className='px-10 text-bodycolor text-xl'>Expenses</li></Link> 
+            <li className='px-10 text-bodycolor text-xl'>Investments</li>
+            <li className='px-10 text-bodycolor text-xl'>Loans</li>
+            <li className='px-10 text-bodycolor text-xl' onClick={handleLogout}>Logout</li>
+          </ul>
         </section>
       </section>
     </div>
