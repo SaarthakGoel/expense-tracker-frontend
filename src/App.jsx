@@ -10,6 +10,8 @@ import Login from './components/Login';
 import { Prefetch } from './features/auth/Prefetch';
 import PersistLogin from './components/PersistLogin';
 import CreateAccount from './components/CreateAccount';
+import InvestmentList from './features/investment/investmentList';
+import EditInvestment from './features/investment/EditInvestment';
 
 function App() {
   return (
@@ -26,6 +28,10 @@ function App() {
                 <Route path='expenses'>
                   <Route index element={<ExpenseList />} />
                   <Route path=':id' element={<EditExpense />} />
+                </Route>
+                <Route path='investments'>
+                  <Route index element={<InvestmentList />} />
+                  <Route path=':id' element={<EditInvestment />} />
                 </Route>
               </Route>
             </Route>
