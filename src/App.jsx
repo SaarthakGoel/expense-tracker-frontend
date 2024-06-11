@@ -12,6 +12,10 @@ import PersistLogin from './components/PersistLogin';
 import CreateAccount from './components/CreateAccount';
 import InvestmentList from './features/investment/investmentList';
 import EditInvestment from './features/investment/EditInvestment';
+import LoanList from './features/loan/LoanList';
+import EditLoan from './features/loan/EditLoan';
+import DebtLoanList from './features/loan/DebtLoanList';
+import LendedLoanList from './features/loan/LendedLoanList';
 
 function App() {
   return (
@@ -32,6 +36,10 @@ function App() {
                 <Route path='investments'>
                   <Route index element={<InvestmentList />} />
                   <Route path=':id' element={<EditInvestment />} />
+                </Route>
+                <Route path='loans' >
+                  <Route index element={<LoanList />} />
+                  <Route path=':id' element={<EditLoan />} />
                 </Route>
               </Route>
             </Route>

@@ -36,7 +36,7 @@ export const loanApiSlice = apiSlice.injectEndpoints({
         method : 'POST',
         body : {...initialData}
       }),
-      invalidatesTags : [{tpye : 'Loan' , id : 'LIST'}],
+      invalidatesTags : [{type : 'Loan' , id : 'LIST'}],
     }),
     updateLoan : builder.mutation({
       query : (initialData) => ({

@@ -31,8 +31,8 @@ const DashHeader = () => {
         <section>
           <ul className='flex cursor-pointer'>
             <Link to='/dash/expenses'><li className='px-10 text-bodycolor text-xl'>Expenses</li></Link> 
-            <li className='px-10 text-bodycolor text-xl'>Investments</li>
-            <li className='px-10 text-bodycolor text-xl'>Loans</li>
+            <Link to='/dash/investments'> <li className='px-10 text-bodycolor text-xl'>Investments</li></Link>
+            <Link to='/dash/loans' > <li className='px-10 text-bodycolor text-xl'>Loans</li></Link>
             <li className='px-10 text-bodycolor text-xl' onClick={handleLogout}>Logout</li>
           </ul>
         </section>

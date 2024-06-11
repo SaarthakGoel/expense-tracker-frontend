@@ -30,6 +30,7 @@ const Welcome = () => {
       </div>
       <div 
         className="flex flex-col items-center justify-center h-40 bg-dark-primary text-secondary rounded-xl shadow-lg transform transition duration-300 hover:scale-105 hover:shadow-2xl"
+        onClick={() => navigate('/dash/loans')}
         style={{ backgroundColor: '#dcdcbb', color: '#1d3e31' }} // Dark Primary background and Secondary text
       >
         <FaHandHoldingUsd className="text-3xl mb-2" />
