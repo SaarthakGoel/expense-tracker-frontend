@@ -39,8 +39,6 @@ const LendedLoanList = () => {
 
   const def = abc.filter((item) => item.lended === true)
 
-  console.log(def);
-
   function getDate(createdAt) {
     const date = new Date(createdAt);
     const day = date.getDate();

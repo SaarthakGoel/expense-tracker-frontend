@@ -14,8 +14,6 @@ import InvestmentList from './features/investment/investmentList';
 import EditInvestment from './features/investment/EditInvestment';
 import LoanList from './features/loan/LoanList';
 import EditLoan from './features/loan/EditLoan';
-import DebtLoanList from './features/loan/DebtLoanList';
-import LendedLoanList from './features/loan/LendedLoanList';
 
 function App() {
   return (
