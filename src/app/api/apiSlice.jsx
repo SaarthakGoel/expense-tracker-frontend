@@ -2,7 +2,7 @@ import { createApi , fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { setCredentials } from "../../features/auth/authSlice";
 
 const baseQuery = fetchBaseQuery({
-  baseUrl: process.env.NODE_ENV === 'deployement' ?  'http://localhost:3500' : 'https://pocket-khata-api.vercel.app/',
+  baseUrl: 'https://pocket-khata-api.vercel.app/',
   credentials: 'include', // Include credentials (cookies)
   prepareHeaders: (headers, { getState }) => {
     const token = getState().auth.token;
