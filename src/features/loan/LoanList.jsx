@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import DebtLoanList from './DebtLoanList';
 import LendedLoanList from './LendedLoanList';
 import { useGetloanQuery } from './loanApiSlice';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { selectCurrentToken } from '../auth/authSlice';
 import { jwtDecode } from 'jwt-decode';
+import { useUpdateUserDataMutation } from '../userData/userDataApiSlice';
 
 const LoanList = () => {
   const [selectedTab, setSelectedTab] = useState('debt');
@@ -42,7 +43,6 @@ const LoanList = () => {
   }
   
   const TotalDebt = getTotalDebt(debts);
-  console.log( "Debt" + TotalDebt)
 
   function getTotalLended(abc) {
     if(abc.length === 0) return 0
@@ -54,12 +54,20 @@ const LoanList = () => {
   }
   
   const TotalLended = getTotalLended(lends);
-  console.log( "Lended" + TotalLended)
 
   const debtStatus = TotalLended - TotalDebt;
-  console.log( "status" + debtStatus)
 
+  const loanData = {
+    TotalDebt : TotalDebt,
+    TotalLended : TotalLended,
+    debtStatus : debtStatus
+  }
 
+  const [updateUserData , {} ] = useUpdateUserDataMutation();
+
+  useEffect(() => {
+    updateUserData({user : userId , TotalDebt : TotalDebt, TotalLended : TotalLended, debtStatus : debtStatus})
+  },[TotalDebt,TotalLended,debtStatus])
 
 
 

@@ -3,9 +3,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Palanquin:wght@100;200;300;400;500;600;700&display=swap");
 
 :root {
-  --primary-color: #526c5b;
-  --secondary-color: #dcdcbb;
-  --dark-primary : 	#1d3e31 ;
+  --primary-color: rgb(82, 108, 91);
+  --secondary-color: rgb(220, 220, 187);
+  --dark-primary : 	rgb(29, 62, 49) ;
   --body-color: #f3f4f0;
 }
 

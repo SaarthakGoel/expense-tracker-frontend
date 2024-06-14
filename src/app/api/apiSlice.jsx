@@ -33,6 +33,16 @@ const baseQueryWithReauth = async (args , api , extraOptions) => {
 
 export const apiSlice = createApi({
   baseQuery : baseQueryWithReauth,
-  tagTypes : ['User' , 'Expense' , 'Investment' , 'Loan'],
-  endpoints : builder => ({})
+  tagTypes : ['User' , 'Expense' , 'Investment' , 'Loan' , 'UserData'],
+  endpoints: (builder) => ({
+    generateReport: builder.mutation({
+      query: (userData) => ({
+        url: '/api/gemenai', // Adjust URL based on your backend setup
+        method: 'POST',
+        body: { userData },
+      }),
+    }),
+  })
 })
+
+export const {useGenerateReportMutation} = apiSlice; 

@@ -70,7 +70,6 @@ const LendedLoanList = () => {
         <button onClick={() => setPopup(true)} className='mx-48 my-6 border-1 border-white bg-darkprimary text-bodycolor px-6 py-3 rounded-md'>New Loan</button>
       </div>
       {isLoading ? <p>Loading...</p> : null}
-      {isError ? <p>{error}</p> : null} 
       <table className="min-w-full divide-y divide-gray-200">
         <thead className="bg-gray-50">
           <tr>

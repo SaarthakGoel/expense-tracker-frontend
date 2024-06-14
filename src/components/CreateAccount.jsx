@@ -25,7 +25,7 @@ const CreateAccount = () => {
           dispatch(setCredentials({ accessToken }));
           setUsername('');
           setPassword('');
-          navigate('/dash');
+          navigate('/userData');
         } catch (err) {
           console.log(err);
           setErrMsg('Login failed after account creation');

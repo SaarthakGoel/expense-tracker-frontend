@@ -1,10 +1,11 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { jwtDecode } from 'jwt-decode';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { selectCurrentToken } from '../auth/authSlice';
 import { useNavigate } from 'react-router-dom';
 import { useDeleteInvestmentMutation, useGetInvestmentQuery } from './investmentApiSlice';
 import NewInvestment from './NewInvestment';
+import { useUpdateUserDataMutation } from '../userData/userDataApiSlice';
 
 const InvestmentList = () => {
 
@@ -59,8 +60,6 @@ const InvestmentList = () => {
     setPopup(false)
   }
 
-
-
   function compareDatesDescending(a, b) {
     const dateA = new Date(a.createdAt);
     const dateB = new Date(b.createdAt);
@@ -79,7 +78,6 @@ const InvestmentList = () => {
   }
 
   const TotalInvestment = getTotalInvestment(abc);
-  console.log(TotalInvestment)
 
   function getTotalCurrent(abc) {
     if (abc.length === 0) return 0
@@ -91,7 +89,6 @@ const InvestmentList = () => {
   }
 
   const TotalCurrent = getTotalCurrent(abc);
-  console.log(TotalCurrent)
 
   function getTotalReturns(abc) {
     if (abc.length === 0) return 0
@@ -103,11 +100,12 @@ const InvestmentList = () => {
   }
 
   const TotalReturns = getTotalReturns(abc);
-  console.log(TotalReturns)
 
+  const [updateUserData , {}] = useUpdateUserDataMutation();
 
-
-
+  useEffect(() => {
+    updateUserData({user : userId , TotalInvestment : TotalInvestment , TotalCurrent : TotalCurrent , TotalReturns : TotalReturns})
+  },[TotalInvestment , TotalCurrent , TotalReturns])
 
     const currentColor = TotalCurrent > TotalInvestment ? '#81c995' : '#f28b82';
     const returnsColor = TotalReturns >= 0 ? '#81c995' : '#f28b82';
@@ -141,7 +139,6 @@ const InvestmentList = () => {
 
 
       {isLoading ? <p>Loading...</p> : null}
-      {isError ? <p>{error}</p> : null}
       <table className="min-w-full divide-y divide-gray-200">
         <thead className="bg-gray-50">
           <tr>

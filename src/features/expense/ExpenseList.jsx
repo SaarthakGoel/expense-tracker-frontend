@@ -1,22 +1,24 @@
-import React, { useState } from 'react'
-import { useDeleteExpenseMutation, useGetExpensesQuery } from './expenseApiSlice'
+import React, { useEffect, useState, useRef } from 'react';
+import { useDeleteExpenseMutation, useGetExpensesQuery } from './expenseApiSlice';
 import { jwtDecode } from 'jwt-decode';
 import { useSelector } from 'react-redux';
 import { selectCurrentToken } from '../auth/authSlice';
 import { useNavigate } from 'react-router-dom';
 import NewExpense from './NewExpense';
+import { useGetUserDataQuery, useUpdateUserDataMutation } from '../userData/userDataApiSlice';
 
 const ExpenseList = () => {
-
   const [popup, setPopup] = useState(false);
-
   const navigate = useNavigate();
 
   const accessToken = useSelector(selectCurrentToken);
-
   const accessTokenData = jwtDecode(accessToken);
-
   const { userId } = accessTokenData;
+
+  const { data: userData } = useGetUserDataQuery();
+
+  // Check if userData is defined before filtering
+  const specUserData = userData ? userData.filter((item) => item.user === userId) : [];
 
   const {
     data: expenses,
@@ -26,16 +28,31 @@ const ExpenseList = () => {
     error
   } = useGetExpensesQuery();
 
-  const [deleteExpense, { }] = useDeleteExpenseMutation();
+  const [deleteExpense] = useDeleteExpenseMutation();
 
   let abc = [];
 
   if (isSuccess) {
     const { ids, entities } = expenses;
-    const expenseList = ids.map(id => entities[id])
-    const userExpenseList = expenseList.filter(item => item.user === userId)
+    const expenseList = ids.map(id => entities[id]);
+    const userExpenseList = expenseList.filter(item => item.user === userId);
     abc = [...userExpenseList];
   }
+
+  const [currMonth, setCurrMonth] = useState(new Date().getMonth());
+
+  useEffect(() => {
+    if (specUserData.length > 0) {
+      const now = new Date();
+      const newMonth = now.getMonth();
+
+      if (newMonth !== currMonth) {
+        const currentMonthExpense = specUserData[0].Income - totalExpenseInLastMonth.currentMonth;
+        updateUserData({ user: userId, Savings: specUserData[0].Savings + currentMonthExpense });
+        setCurrMonth(newMonth);
+      }
+    }
+  }, [new Date().getDate()]);
 
   function getDate(createdAt) {
     const date = new Date(createdAt);
@@ -44,25 +61,20 @@ const ExpenseList = () => {
     const year = date.getFullYear();
 
     const formattedDate = `${day}-${month}-${year}`;
-    return formattedDate
+    return formattedDate;
   }
 
   function handleEdit(id) {
-    navigate(`/dash/expenses/${id}`)
+    navigate(`/dash/expenses/${id}`);
   }
 
   function handleDelete(id) {
-    deleteExpense({ id: id })
+    deleteExpense({ id });
   }
 
   function closePopup() {
-    setPopup(false)
+    setPopup(false);
   }
-
-
-
-
-
 
   function compareDatesDescending(a, b) {
     const dateA = new Date(a.createdAt);
@@ -70,55 +82,84 @@ const ExpenseList = () => {
     return dateB - dateA;
   }
 
+  const now = new Date();
+  const thisMonth = now.getMonth();
+
   abc.sort(compareDatesDescending);
 
-  function getTotalExpenseInLastMonth(abc) {
-    if (abc.length === 0) return 0;
+  function getTotalExpenses(abc) {
+    if (abc.length === 0) return { currentMonth: 0, lastMonth: 0, twoMonthsAgo: 0 };
 
-    const referenceDate = new Date(abc[0].createdAt);
-    const referenceMonth = referenceDate.getMonth();
-    const referenceYear = referenceDate.getFullYear();
-    
-    let totalExpense = 0;
-    
+    const now = new Date();
+    const currentMonth = now.getMonth(); // 0 = January, 11 = December
+    const currentYear = now.getFullYear();
+
+    let totalExpenseCurrentMonth = 0;
+    let totalExpenseLastMonth = 0;
+    let totalExpenseTwoMonthsAgo = 0;
+
     abc.forEach((item) => {
-        const itemDate = new Date(item.createdAt);
-        const itemMonth = itemDate.getMonth();
-        const itemYear = itemDate.getFullYear();
-        
-        if (referenceMonth === itemMonth && referenceYear === itemYear) {
-            totalExpense += item.amount;
-        }
+      const itemDate = new Date(item.createdAt);
+      const itemMonth = itemDate.getMonth();
+      const itemYear = itemDate.getFullYear();
+
+      if (itemYear === currentYear && itemMonth === currentMonth) {
+        totalExpenseCurrentMonth += item.amount;
+      } else if (
+        (itemYear === currentYear && itemMonth === currentMonth - 1) ||
+        (currentMonth === 0 && itemMonth === 11 && itemYear === currentYear - 1)
+      ) {
+        totalExpenseLastMonth += item.amount;
+      } else if (
+        (itemYear === currentYear && itemMonth === currentMonth - 2) ||
+        (currentMonth === 0 && itemMonth === 10 && itemYear === currentYear - 1) ||
+        (currentMonth === 1 && itemMonth === 11 && itemYear === currentYear - 1)
+      ) {
+        totalExpenseTwoMonthsAgo += item.amount;
+      }
     });
-    
-    return totalExpense;
-}
 
-  const totalExpenseInLastMonth = getTotalExpenseInLastMonth(abc);
+    return { currentMonth: totalExpenseCurrentMonth, lastMonth: totalExpenseLastMonth, twoMonthsAgo: totalExpenseTwoMonthsAgo };
+  }
 
+  const totalExpenseInLastMonth = getTotalExpenses(abc);
 
+  const currentMonth = totalExpenseInLastMonth.currentMonth;
 
+  const lastMonth = totalExpenseInLastMonth.lastMonth;
 
+  const twoMonthsAgo = totalExpenseInLastMonth.twoMonthsAgo;
 
+  const [updateUserData] = useUpdateUserDataMutation();
 
+  useEffect(() => {
+    if (specUserData.length > 0) {
+      updateUserData({ user: userId, currentMonth, lastMonth, twoMonthsAgo });
+    }
+  }, [currentMonth, lastMonth, twoMonthsAgo]);
 
-
-
-
-
-
-
-
-
+  const returnsColor = specUserData.length > 0 && specUserData[0].Income - currentMonth >= 0 ? '#81c995' : '#f28b82';
 
   return (
     <div className="container mx-auto mt-24 p-4">
-      {
-        popup ? <NewExpense closePopup={closePopup} /> : null
-      }
+      {popup ? <NewExpense closePopup={closePopup} /> : null}
 
-      <div>
-        <span className='text-4xl text-gray-700 font-semibold'>Current Month Expense : </span> <span className='text-5xl text-[#e75757] font-extrabold'>&#8377;{totalExpenseInLastMonth}</span>
+      <div className='flex justify-around'>
+        <div>
+          <span className='text-4xl text-gray-700 font-semibold'>Month Expense : </span> <span className='text-5xl text-[#e75757] font-extrabold'>&#8377;{currentMonth}</span>
+        </div>
+
+        {specUserData.length > 0 && (
+          <>
+            <div>
+              <span className='text-4xl text-gray-700 font-semibold'>Income <span className='text-sm'>(/month)</span> : </span> <span className='text-5xl text-[#81c995] font-extrabold'>&#8377;{specUserData[0].Income}</span>
+            </div>
+
+            <div>
+              <span className='text-4xl text-gray-700 font-semibold'>Month Balance : </span> <span style={{ color: returnsColor }} className='text-5xl font-extrabold'>&#8377;{specUserData[0].Income - currentMonth}</span>
+            </div>
+          </>
+        )}
       </div>
 
       <div className='flex justify-end'>
@@ -126,7 +167,6 @@ const ExpenseList = () => {
       </div>
 
       {isLoading ? <p>Loading...</p> : null}
-      {isError ? <p>{error}</p> : null}
       <table className="min-w-full divide-y divide-gray-200">
         <thead className="bg-gray-50">
           <tr>
@@ -155,13 +195,12 @@ const ExpenseList = () => {
                   </button>
                 </td>
               </tr>
-            )
-          }
-          )}
+            );
+          })}
         </tbody>
       </table>
     </div>
   );
-}
+};
 
 export default ExpenseList;

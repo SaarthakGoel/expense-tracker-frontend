@@ -14,6 +14,8 @@ import InvestmentList from './features/investment/investmentList';
 import EditInvestment from './features/investment/EditInvestment';
 import LoanList from './features/loan/LoanList';
 import EditLoan from './features/loan/EditLoan';
+import SetUserData from './components/SetUserData';
+import Report from './features/report/Report';
 
 function App() {
   return (
@@ -21,10 +23,11 @@ function App() {
       <Route path="/" element={<Layout />}>
         <Route index element={<Landing />} />
         <Route path='/login' element={<Login />} />
-        <Route path='/createaccount' element={<CreateAccount />} /> 
+        <Route path='/createaccount' element={<CreateAccount />} />
         <Route element={<PersistLogin />} >
           <Route element={<ProtectedRoute />} >
             <Route element={<Prefetch />}>
+              <Route path='/userData' element={<SetUserData />} />
               <Route path='dash' element={<DashLayout />}>
                 <Route index element={<Welcome />} />
                 <Route path='expenses'>
@@ -39,6 +42,7 @@ function App() {
                   <Route index element={<LoanList />} />
                   <Route path=':id' element={<EditLoan />} />
                 </Route>
+                <Route path='report' element={<Report />} />
               </Route>
             </Route>
           </Route>
