@@ -40,7 +40,7 @@ const CreateAccount = () => {
     setErrMsg(''); // Clear previous error messages
     setUserCreated(false); // Reset user creation state
     try {
-      await createUser({ username, password, email }).unwrap();
+      await createUser({ username, password }).unwrap();
       setUserCreated(true);
     } catch (err) {
       console.log(err);
