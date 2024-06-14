@@ -13,7 +13,7 @@ const Landing = () => {
         <h1 className='text-5xl font-extrabold text-bodycolor overflow-clip'>
           Pocket Khata
         </h1>
-        <nav>
+        <nav className='hidden sm:block'>
           <ul className='flex space-x-8 text-bodycolor font-medium'>
             <li className='hover:text-primary cursor-pointer'>
               <Link to='home' smooth={true} duration={100}>Home</Link>
@@ -33,7 +33,7 @@ const Landing = () => {
       
       {/* Main Section */}
       <main id='home' className='mt-[12vh] h-[88vh] bg-secondary flex flex-col items-center'>
-        <section className='w-full h-full flex flex-col lg:flex-row justify-around items-center py-16 px-8 lg:px-32'>
+        <section className='w-full h-full flex flex-col lg:flex-row gap-16 justify-around items-center py-16 px-8 lg:px-32'>
           <div className='lg:w-1/2 text-center lg:text-left'>
             <h1 className='text-6xl font-bold py-5'>
               <span className='text-primary'>Pocket Khata</span>: Your Personal Expense Tracker
@@ -58,7 +58,7 @@ const Landing = () => {
             </div>
           </div>
           <div className='lg:w-1/2 mt-12 lg:mt-0'>
-            <img src={landingImg} alt='Pocket Khata' className=' w-full h-auto rounded-lg shadow-lg' />
+            <img src={landingImg} alt='Pocket Khata' className=' w-[40vw] h-[50vh] rounded-lg shadow-lg' />
           </div>
         </section>
       </main>

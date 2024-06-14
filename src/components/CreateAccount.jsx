@@ -8,7 +8,7 @@ import { useCreateUserMutation } from '../features/users/userApiSlice';
 const CreateAccount = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [email, setEmail] = useState('');
+  //const [email, setEmail] = useState('');
   const [errMsg, setErrMsg] = useState('');
   const [userCreated, setUserCreated] = useState(false);
   const navigate = useNavigate();
@@ -74,10 +74,10 @@ const CreateAccount = () => {
               <label className='mb-2 text-lg'>Username <sup className='text-red-500 relative top-[-2px] text-[95%] leading-none'>*</sup></label>
               <input name='firstname' type='text' placeholder='Enter first name' value={username} onChange={(e) => setUsername(e.target.value)} className='rounded border border-gray-300 h-8 px-2 w-72' />
             </section>
-            <section className='field flex flex-col relative pb-4 mx-12'>
+            {/*<section className='field flex flex-col relative pb-4 mx-12'>
               <label className='mb-2 text-lg'>Email <sup className='text-red-500 relative top-[-2px] text-[95%] leading-none'>*</sup></label>
               <input type='text' name='email' placeholder='Ex: abc@xyz.com' value={email} onChange={(e) => setEmail(e.target.value)} className='rounded border border-gray-300 h-8 px-2 w-72' />
-            </section>
+            </section>*/}
             <section className='field flex flex-col relative pb-4 mx-12'>
               <label className='mb-2 text-lg'>Password <sup className='text-red-500 relative top-[-2px] text-[95%] leading-none'>*</sup></label>
               <input name='lastname' type='password' placeholder='Enter last name' value={password} onChange={(e) => setPassword(e.target.value)} className='rounded border border-gray-300 h-8 px-2 w-72' />
