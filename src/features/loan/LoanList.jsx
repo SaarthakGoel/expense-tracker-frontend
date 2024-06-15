@@ -86,15 +86,15 @@ const LoanList = () => {
   return (
     <div className="container mx-auto mt-24 p-4">
 
-      <div className='flex justify-around mb-10'>
-      <div>
-        <span className='text-4xl text-gray-700 font-semibold'>Debt : </span> <span className='text-5xl text-[#f28b82] font-extrabold'>&#8377;{TotalDebt}</span>
+      <div className='flex flex-col items-center sm:flex-row sm:justify-around sm:mb-10'>
+      <div className='mb-5 sm:mb-0'>
+        <span className='text-2xl sm:text-3xl md:text-4xl text-gray-700 font-semibold'>Debt : </span> <span className='text-3xl sm:text-4xl md:text-5xl text-[#f28b82] font-extrabold'>&#8377;{TotalDebt}</span>
       </div>
-      <div>
-        <span className='text-4xl text-gray-700 font-semibold'>Lended : </span> <span className='text-5xl text-[#81c995] font-extrabold'>&#8377;{TotalLended}</span>
+      <div className='mb-5 sm:mb-0'>
+        <span className='text-2xl sm:text-3xl md:text-4xl text-gray-700 font-semibold'>Lended : </span> <span className='text-3xl sm:text-4xl md:text-5xl text-[#81c995] font-extrabold'>&#8377;{TotalLended}</span>
       </div>
-      <div>
-        <span className='text-4xl text-gray-700 font-semibold'>Debt Status : </span> <span className='text-5xl font-extrabold' style={{ color: statusClass }}>&#8377;{debtStatus}</span>
+      <div className='mb-5 sm:mb-0'>
+        <span className='text-2xl sm:text-3xl md:text-4xl text-gray-700 font-semibold'>Debt Status : </span> <span className='text-3xl sm:text-4xl md:text-5xl font-extrabold' style={{ color: statusClass }}>&#8377;{debtStatus}</span>
       </div>
       </div>
 

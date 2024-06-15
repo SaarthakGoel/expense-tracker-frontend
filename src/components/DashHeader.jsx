@@ -24,15 +24,15 @@ const DashHeader = () => {
 
   return (
     <div>
-      <section className='flex h-[10vh] justify-around items-center fixed top-0 right-0 left-0 bg-darkprimary'>
-        <section className=' text-5xl font-extrabold text-bodycolor'>
+      <section className='flex h-[10vh] z-50 justify-around items-center fixed top-0 right-0 left-0 bg-darkprimary'>
+        <section className=' text-4xl sm:text-5xl whitespace-nowrap font-extrabold text-bodycolor '>
         <Link to='/dash'>  Pocket Khata </Link>
         </section>
         <section>
           <ul className='flex cursor-pointer'>
-            <Link to='/dash/expenses'><li className='px-10 text-bodycolor text-xl'>Expenses</li></Link> 
-            <Link to='/dash/investments'> <li className='px-10 text-bodycolor text-xl'>Investments</li></Link>
-            <Link to='/dash/loans' > <li className='px-10 text-bodycolor text-xl'>Loans</li></Link>
+            <Link to='/dash/expenses'><li className='hidden md:block px-5 lg:px-10 text-bodycolor text-xl'>Expenses</li></Link> 
+            <Link to='/dash/investments'> <li className='hidden md:block px-5 lg:px-10 text-bodycolor text-xl'>Investments</li></Link>
+            <Link to='/dash/loans' > <li className='hidden md:block px-5 lg:px-10 text-bodycolor text-xl'>Loans</li></Link>
             <li className='px-10 text-bodycolor text-xl' onClick={handleLogout}>Logout</li>
           </ul>
         </section>

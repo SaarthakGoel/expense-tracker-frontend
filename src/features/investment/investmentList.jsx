@@ -118,27 +118,28 @@ const InvestmentList = () => {
         popup ? <NewInvestment closePopup={closePopup} /> : null
       }
 
-      <div className='flex justify-around'>
-      <div>
-        <span className='text-4xl text-gray-700 font-semibold'>Total Invested : </span> 
-        <span className='text-5xl text-black font-extrabold'>&#8377;{TotalInvestment}</span>
+      <div className='flex flex-col items-center sm:flex-row sm:justify-around'>
+      <div className='mb-5 sm:mb-0'>
+        <span className='text-2xl sm:text-3xl md:text-4xl text-gray-700 font-semibold'>Total Invested : </span> 
+        <span className='text-3xl sm:text-4xl md:text-5xl text-black font-extrabold'>&#8377;{TotalInvestment}</span>
       </div>
-      <div>
-        <span className='text-4xl text-gray-700 font-semibold'>Current Value : </span> 
-        <span className='text-5xl font-extrabold' style={{ color: currentColor }}>&#8377;{TotalCurrent}</span>
+      <div className='mb-5 sm:mb-0'>
+        <span className='text-2xl sm:text-3xl md:text-4xl text-gray-700 font-semibold'>Current Value : </span> 
+        <span className='text-3xl sm:text-4xl md:text-5xl font-extrabold' style={{ color: currentColor }}>&#8377;{TotalCurrent}</span>
       </div>
-      <div>
-        <span className='text-4xl text-gray-700 font-semibold'>Returns : </span> 
-        <span className='text-5xl font-extrabold' style={{ color: returnsColor }}>&#8377;{TotalReturns}</span>
+      <div className='mb-5 sm:mb-0'>
+        <span className='text-2xl sm:text-3xl md:text-4xl text-gray-700 font-semibold'>Returns : </span> 
+        <span className='text-3xl sm:text-4xl md:text-5xl font-extrabold' style={{ color: returnsColor }}>&#8377;{TotalReturns}</span>
       </div>
     </div>
 
       <div className='flex justify-end'>
-        <button onClick={() => setPopup(true)} className='mx-48 my-6 border-1 border-white bg-darkprimary text-bodycolor px-6 py-3 rounded-md'>New Investment</button>
+        <button onClick={() => setPopup(true)} className=' my-6 border-1 border-white bg-darkprimary text-bodycolor px-6 py-3 rounded-md'>New Investment</button>
       </div>
 
 
       {isLoading ? <p>Loading...</p> : null}
+      <div className=' overflow-x-scroll'>
       <table className="min-w-full divide-y divide-gray-200">
         <thead className="bg-gray-50">
           <tr>
@@ -174,6 +175,7 @@ const InvestmentList = () => {
           ))}
         </tbody>
       </table>
+      </div>
     </div>
   );
 }

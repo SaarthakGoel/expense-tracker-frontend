@@ -44,18 +44,18 @@ const Login = () => {
       {
         errMsg ? <p>{errMsg}</p> : null
       }
-      <header className='pb-6 pt-5 h-[10vh] fixed top-0 right-0 left-0 px-16 bg-darkprimary flex justify-around items-center'>
-        <h1 className=' text-5xl font-extrabold text-bodycolor '>
+      <header className='h-[12vh] fixed top-0 right-0 left-0 px-16 bg-darkprimary flex justify-center items-center shadow-lg z-10'>
+        <h1 className='text-4xl font-extrabold text-bodycolor overflow-clip text-nowrap sm:text-5xl'>
           <Link to='/'>Pocket Khata</Link>
         </h1>
       </header>
-      <section className='border-2 border-[#665454] w-1/4'>
+      <section className='border-2 border-[#665454] w-80 sm:w-96'>
         <form onSubmit={handleSubmit} >
           <section className='form-elements flex flex-col items-start justify-between'>
             <h1 className='form-head text-2xl my-8 mx-12 '>Login</h1>
             <section className='field flex flex-col relative pb-4 mx-12'>
               <label className='mb-2 text-lg'>Username <sup className='text-red-500 relative top-[-2px] text-[95%] leading-none'>*</sup></label>
-              <input name='firstname' type='text' placeholder='Enter first name' value={username} onChange={(e) => setUsername(e.target.value)} className='rounded border border-gray-300 h-8 px-2 w-72' />
+              <input name='firstname' type='text' placeholder='Enter first name' value={username} onChange={(e) => setUsername(e.target.value)} className='rounded border border-gray-300 h-8 px-2 w-48  sm:w-72' />
             </section>
             {/*<section className='field flex flex-col relative pb-4 mx-12'>
               <label className='mb-2 text-lg'>Email <sup className='text-red-500 relative top-[-2px] text-[95%] leading-none'>*</sup></label>
@@ -63,7 +63,7 @@ const Login = () => {
             </section>*/}
             <section className='field flex flex-col relative pb-4 mx-12'>
               <label className='mb-2 text-lg'>Password <sup className='text-red-500 relative top-[-2px] text-[95%] leading-none'>*</sup></label>
-              <input name='lastname' type='password' placeholder='Enter last name' value={password} onChange={(e) => setPassword(e.target.value)} className='rounded border border-gray-300 h-8 px-2 w-72' />
+              <input name='lastname' type='password' placeholder='Enter last name' value={password} onChange={(e) => setPassword(e.target.value)} className='rounded border border-gray-300 h-8 px-2 w-48 sm:w-72' />
             </section>
             <section className='form-button-section my-4 mx-12'>
               <button className='form-submit px-4 py-4 mr-4 w-28 rounded border border-gray-300 bg-primary text-white uppercase text-sm font-bold cursor-pointer' type='submit' onClick={handleSubmit}>Submit</button>

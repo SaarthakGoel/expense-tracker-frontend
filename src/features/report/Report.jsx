@@ -44,66 +44,52 @@ const Report = () => {
   };
 
   return (
-    <div className='mt-24'>
-      <div className="grid grid-cols-3">
-        <div className="mx-auto mt-2 mb-6">
-          <span className=' text-4xl text-gray-700 font-semibold'>Savings : </span>
-          <span className='text-5xl text-[#81c995] font-extrabold'>&#8377;{specUserData[0].Savings}</span>
-        </div>
-        <div className="mx-auto mt-2 mb-6">
-          <span className=' text-4xl text-gray-700 font-semibold'>Income : </span>
-          <span className='text-5xl text-[#81c995] font-extrabold'>&#8377;{specUserData[0].Income}</span>
-        </div>
-        <div className="mx-auto mt-2 mb-6">
-          <span className=' text-4xl text-gray-700 font-semibold'>Month Expense : </span>
-          <span className='text-5xl text-[#e75757] font-extrabold'>&#8377;{specUserData[0].expense.currentMonth}</span>
-        </div>
-        <div className="mx-auto mt-2 mb-6">
-          <span className=' text-4xl text-gray-700 font-semibold'>Invested amount : </span>
-          <span className='text-5xl text-black font-extrabold'>&#8377;{specUserData[0].investment.TotalInvestment}</span>
-        </div>
-        <div className="mx-auto mt-2 mb-6">
-          <span className=' text-4xl text-gray-700 font-semibold'>Current Amount : </span>
-          <span style={{ color: currentColor }} className='text-5xl font-extrabold'>&#8377;{specUserData[0].investment.TotalCurrent}</span>
-        </div>
-        <div className="mx-auto mt-2 mb-6">
-          <span className=' text-4xl text-gray-700 font-semibold'>Returns : </span>
-          <span style={{ color: returnsColor }} className='text-5xl font-extrabold'>&#8377;{specUserData[0].investment.TotalReturns}</span>
-        </div>
-        <div className="mx-auto mt-2 mb-6">
-          <span className=' text-4xl text-gray-700 font-semibold'>Total Debt : </span>
-          <span className='text-5xl text-[#e75757] font-extrabold'>&#8377;{specUserData[0].loan.TotalDebt}</span>
-        </div>
-        <div className="mx-auto mt-2 mb-6">
-          <span className=' text-4xl text-gray-700 font-semibold'>Total Lended : </span>
-          <span className='text-5xl text-[#81c995] font-extrabold'>&#8377;{specUserData[0].loan.TotalLended}</span>
-        </div>
-        <div className="mx-auto mt-2 mb-6">
-          <span className=' text-4xl text-gray-700 font-semibold'>Debt Status : </span>
-          <span style={{ color: statusColor }} className='text-5xl font-extrabold'>&#8377;{specUserData[0].loan.debtStatus}</span>
-        </div>
+    <div className="mt-24 px-4 sm:px-6 lg:px-8">
+      <div className="hidden md:block">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {[
+          { label: 'Savings', value: specUserData[0].Savings, color: '#81c995' },
+          { label: 'Income', value: specUserData[0].Income, color: '#81c995' },
+          { label: 'Month Expense', value: specUserData[0].expense.currentMonth, color: '#e75757' },
+          { label: 'Invested amount', value: specUserData[0].investment.TotalInvestment, color: 'black' },
+          { label: 'Current Amount', value: specUserData[0].investment.TotalCurrent, color: currentColor },
+          { label: 'Returns', value: specUserData[0].investment.TotalReturns, color: returnsColor },
+          { label: 'Total Debt', value: specUserData[0].loan.TotalDebt, color: '#e75757' },
+          { label: 'Total Lended', value: specUserData[0].loan.TotalLended, color: '#81c995' },
+          { label: 'Debt Status', value: specUserData[0].loan.debtStatus, color: statusColor }
+        ].map((item, index) => (
+          <div key={index} className="text-center mt-2 mb-6">
+            <span className="text-xl sm:text-2xl lg:text-4xl text-gray-700 font-semibold">{item.label} : </span>
+            <span className={`text-2xl sm:text-3xl lg:text-5xl font-extrabold`} style={{ color: item.color }}>
+              &#8377;{item.value}
+            </span>
+          </div>
+        ))}
       </div>
-
-<div className="flex flex-col justify-center items-center mx-24 my-10">
-  <p className="text-5xl my-10 font-semibold text-primary">Generate a AI Powered Report Using GemenAi By Google</p>
-      <button
-        onClick={handleGenerateReport}
-        disabled={reportLoading}
-        className={`bg-primary hover:bg-darkprimary text-bodycolor font-bold py-2 px-4 rounded ${reportLoading ? 'opacity-50 cursor-not-allowed' : ''}`}
-      >
-        {reportLoading ? 'Generating...' : 'Generate Report'}
-      </button>
-
-      {reportSuccess && (
-        <div className="mt-4">
-          <h3 className="text-lg font-bold mb-2">Generated Report:</h3>
-          <p className="whitespace-pre-line" dangerouslySetInnerHTML={{ __html: formatReport(response) }}></p>
-        </div>
-      )}
-
-      {reportError && (
-        <p className="text-red-500 mt-4">Error generating report. Free trial limit reached. Please try again after an hour.</p>
-      )}
+      </div>
+  
+      <div className="flex flex-col justify-center items-center mx-4 sm:mx-6 lg:mx-24 my-10">
+        <p className="text-2xl sm:text-3xl lg:text-5xl my-10 font-semibold text-primary text-center">
+          Generate an AI Powered Report Using GemenAi By Google
+        </p>
+        <button
+          onClick={handleGenerateReport}
+          disabled={reportLoading}
+          className={`bg-primary hover:bg-darkprimary text-bodycolor font-bold py-2 px-4 rounded ${reportLoading ? 'opacity-50 cursor-not-allowed' : ''}`}
+        >
+          {reportLoading ? 'Generating...' : 'Generate Report'}
+        </button>
+  
+        {reportSuccess && (
+          <div className="mt-4">
+            <h3 className="text-lg font-bold mb-2">Generated Report:</h3>
+            <p className="whitespace-pre-line" dangerouslySetInnerHTML={{ __html: formatReport(response) }}></p>
+          </div>
+        )}
+  
+        {reportError && (
+          <p className="text-red-500 mt-4">Error generating report. Free trial limit reached. Please try again after an hour.</p>
+        )}
       </div>
     </div>
   );

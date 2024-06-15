@@ -144,29 +144,30 @@ const ExpenseList = () => {
     <div className="container mx-auto mt-24 p-4">
       {popup ? <NewExpense closePopup={closePopup} /> : null}
 
-      <div className='flex justify-around'>
-        <div>
-          <span className='text-4xl text-gray-700 font-semibold'>Month Expense : </span> <span className='text-5xl text-[#e75757] font-extrabold'>&#8377;{currentMonth}</span>
+      <div className='flex flex-col items-center sm:flex-row sm:justify-around'>
+        <div className='mb-5 sm:mb-0'>
+          <span className='text-2xl sm:text-3xl md:text-4xl text-gray-700 font-semibold'>Month Expense : </span> <span className='text-3xl sm:text-4xl md:text-5xl text-[#f28b82] font-extrabold'>&#8377;{currentMonth}</span>
         </div>
 
         {specUserData.length > 0 && (
           <>
-            <div>
-              <span className='text-4xl text-gray-700 font-semibold'>Income <span className='text-sm'>(/month)</span> : </span> <span className='text-5xl text-[#81c995] font-extrabold'>&#8377;{specUserData[0].Income}</span>
+            <div className='mb-5 sm:mb-0'>
+              <span className='text-2xl sm:text-3xl md:text-4xl text-gray-700 font-semibold'>Income <span className='text-xs md:text-sm'>(/month)</span> : </span> <span className='text-3xl sm:text-4xl md:text-5xl text-[#81c995] font-extrabold'>&#8377;{specUserData[0].Income}</span>
             </div>
 
-            <div>
-              <span className='text-4xl text-gray-700 font-semibold'>Month Balance : </span> <span style={{ color: returnsColor }} className='text-5xl font-extrabold'>&#8377;{specUserData[0].Income - currentMonth}</span>
+            <div className='mb-5 sm:mb-0'>
+              <span className='text-2xl sm:text-3xl md:text-4xl text-gray-700 font-semibold'>Month Balance : </span> <span style={{ color: returnsColor }} className='text-3xl sm:text-4xl md:text-5xl font-extrabold'>&#8377;{specUserData[0].Income - currentMonth}</span>
             </div>
           </>
         )}
       </div>
 
       <div className='flex justify-end'>
-        <button onClick={() => setPopup(true)} className='mx-48 my-6 border-1 border-white bg-darkprimary text-bodycolor px-6 py-3 rounded-md'>New Expense</button>
+        <button onClick={() => setPopup(true)} className='my-6 border-1 border-white bg-darkprimary text-bodycolor px-6 py-3 rounded-md'>New Expense</button>
       </div>
 
       {isLoading ? <p>Loading...</p> : null}
+      <div className=' overflow-x-scroll'>
       <table className="min-w-full divide-y divide-gray-200">
         <thead className="bg-gray-50">
           <tr>
@@ -199,6 +200,7 @@ const ExpenseList = () => {
           })}
         </tbody>
       </table>
+      </div>
     </div>
   );
 };

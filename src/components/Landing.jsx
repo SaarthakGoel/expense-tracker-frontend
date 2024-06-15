@@ -9,11 +9,11 @@ const Landing = () => {
   return (
     <div className='bg-body-color w-screen'>
       {/* Header Section */}
-      <header className='h-[12vh] fixed top-0 right-0 left-0 px-16 bg-darkprimary flex justify-between items-center shadow-lg z-10'>
-        <h1 className='text-5xl font-extrabold text-bodycolor overflow-clip'>
+      <header className='h-[12vh] fixed top-0 right-0 left-0 px-16 bg-darkprimary flex justify-center  md:justify-between items-center shadow-lg z-10'>
+        <h1 className='text-4xl font-extrabold text-bodycolor overflow-clip text-nowrap sm:text-5xl'>
           Pocket Khata
         </h1>
-        <nav className='hidden sm:block'>
+        <nav className='hidden md:block'>
           <ul className='flex space-x-8 text-bodycolor font-medium'>
             <li className='hover:text-primary cursor-pointer'>
               <Link to='home' smooth={true} duration={100}>Home</Link>
@@ -34,31 +34,31 @@ const Landing = () => {
       {/* Main Section */}
       <main id='home' className='mt-[12vh] h-[88vh] bg-secondary flex flex-col items-center'>
         <section className='w-full h-full flex flex-col lg:flex-row gap-16 justify-around items-center py-16 px-8 lg:px-32'>
-          <div className='lg:w-1/2 text-center lg:text-left'>
-            <h1 className='text-6xl font-bold py-5'>
+          <div className='xl:w-1/2 text-center xl:text-left'>
+            <h1 className='text-5xl font-bold py-5 sm:text-6xl'>
               <span className='text-primary'>Pocket Khata</span>: Your Personal Expense Tracker
             </h1>
-            <h3 className='text-3xl font-semibold py-5'>Take Control of Your Finances</h3>
-            <p className='text-xl text-gray-700 leading-9 mb-8'>
+            <h3 className='text-2xl font-semibold py-5 sm:3xl'>Take Control of Your Finances</h3>
+            <p className='text-lg text-gray-700 leading-6 mb-8 sm:text-xl sm:leading-9'>
               Welcome to Pocket Khata, the ultimate solution for managing your personal finances. Whether you're saving for a big purchase, keeping track of daily expenses, or planning your monthly budget, Pocket Khata is here to help you stay on top of your money matters.
             </p>
-            <div className='flex justify-center lg:justify-start space-x-6'>
+            <div className='flex justify-center xl:justify-start space-x-6'>
               <button 
-                className='bg-darkprimary text-bodycolor py-4 px-10 border-2 border-darkprimary rounded-full font-medium transition duration-500 hover:bg-primary hover:border-primary'
+                className='bg-darkprimary text-bodycolor py-3 px-6 sm:py-5 sm:px-10 border-2 border-darkprimary rounded-full font-medium transition duration-500 hover:bg-primary hover:border-primary'
                 onClick={() => navigate('/login')}
               >
                 Log In
               </button>
               <button 
-                className='bg-bodycolor text-darkprimary py-4 px-10 rounded-full border-2 border-darkprimary font-medium transition duration-500 hover:bg-primary hover:text-bodycolor'
+                className='bg-bodycolor text-darkprimary py-3 px-6 sm:py-5 sm:px-10 rounded-full border-2 border-darkprimary font-medium transition duration-500 hover:bg-primary hover:text-bodycolor'
                 onClick={() => navigate('/createaccount')}
               >
                 Create Account
               </button>
             </div>
           </div>
-          <div className='lg:w-1/2 mt-12 lg:mt-0'>
-            <img src={landingImg} alt='Pocket Khata' className=' w-[40vw] h-[50vh] rounded-lg shadow-lg' />
+          <div className='hidden xl:block lg:w-1/2 mt-12 lg:mt-0'>
+            <img src={landingImg} alt='Pocket Khata' className='w-[600px] h-[400px] rounded-lg shadow-lg' />
           </div>
         </section>
       </main>
@@ -98,19 +98,19 @@ const Landing = () => {
             <div className='w-full md:w-1/3 p-4'>
               <div className='bg-white p-6 rounded-lg shadow-md'>
                 <p className='text-gray-700 italic mb-4'>"Pocket Khata has transformed the way I manage my finances. It's incredibly easy to use and has helped me save a lot of money."</p>
-                <h3 className='text-xl font-semibold'>- John Doe</h3>
+                <h3 className='text-xl font-semibold'>- Aditya Verma</h3>
               </div>
             </div>
             <div className='w-full md:w-1/3 p-4'>
               <div className='bg-white p-6 rounded-lg shadow-md'>
                 <p className='text-gray-700 italic mb-4'>"I love the goal setting feature. It's so motivating to see my progress and know that I'm getting closer to my financial goals."</p>
-                <h3 className='text-xl font-semibold'>- Jane Smith</h3>
+                <h3 className='text-xl font-semibold'>- Utkarsh Awasthi</h3>
               </div>
             </div>
             <div className='w-full md:w-1/3 p-4'>
               <div className='bg-white p-6 rounded-lg shadow-md'>
                 <p className='text-gray-700 italic mb-4'>"The reporting tools are fantastic. They give me a clear picture of where my money is going, which helps me make better financial decisions."</p>
-                <h3 className='text-xl font-semibold'>- Mark Johnson</h3>
+                <h3 className='text-xl font-semibold'>- Dhruv Gupta</h3>
               </div>
             </div>
           </div>
