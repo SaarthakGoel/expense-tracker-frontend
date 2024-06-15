@@ -32,14 +32,14 @@ const Landing = () => {
       </header>
       
       {/* Main Section */}
-      <main id='home' className='mt-[12vh] h-[88vh] bg-secondary flex flex-col items-center'>
+      <main id='home' className='mt-[6vh] sm:mt-[9vh] md:[12vh] h-[88vh] bg-secondary flex flex-col items-center'>
         <section className='w-full h-full flex flex-col lg:flex-row gap-16 justify-around items-center py-16 px-8 lg:px-32'>
           <div className='xl:w-1/2 text-center xl:text-left'>
             <h1 className='text-5xl font-bold py-5 sm:text-6xl'>
               <span className='text-primary'>Pocket Khata</span>: Your Personal Expense Tracker
             </h1>
             <h3 className='text-2xl font-semibold py-5 sm:3xl'>Take Control of Your Finances</h3>
-            <p className='text-lg text-gray-700 leading-6 mb-8 sm:text-xl sm:leading-9'>
+            <p className=' text-left sm:text-center text-lg text-gray-700 leading-6 mb-8 sm:text-xl sm:leading-9'>
               Welcome to Pocket Khata, the ultimate solution for managing your personal finances. Whether you're saving for a big purchase, keeping track of daily expenses, or planning your monthly budget, Pocket Khata is here to help you stay on top of your money matters.
             </p>
             <div className='flex justify-center xl:justify-start space-x-6'>
